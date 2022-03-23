@@ -16,7 +16,7 @@ module "vpc" {
   admin_key_public = var.admin_key_public
 }
 
-resource "aws_instance" "example_vm" {
+resource "aws_instance" "moshe_vm" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
   count = 2
@@ -28,7 +28,7 @@ resource "aws_instance" "example_vm" {
   instance_type = "t2.micro"
 
   tags = {
-    Name = "cloudify-public-${var.env_name}-vm"
+    Name = "moshe-${var.env_name}-vm"
   }
 
   # Lookup the correct AMI based on the region
