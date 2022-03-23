@@ -45,7 +45,7 @@ resource "aws_instance" "example_vm" {
 }
 
 resource "aws_eip" "eip" {
-  instance = aws_instance.example_vm.id
+  instance = aws_instance.example_vm[count.index].id
   vpc      = true
 }
 
