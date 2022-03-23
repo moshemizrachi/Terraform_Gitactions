@@ -16,7 +16,7 @@ module "vpc" {
   admin_key_public = var.admin_key_public
 }
 
-resource "aws_instance" "moshe_vm" {
+resource "aws_instance" "example_vm" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
   count = 2
