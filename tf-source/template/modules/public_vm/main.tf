@@ -19,6 +19,7 @@ module "vpc" {
 resource "aws_instance" "example_vm" {
   # The connection block tells our provisioner how to
   # communicate with the resource (instance)
+  count = 2
   connection {
     # The default username for our AMI
     user = var.admin_user
