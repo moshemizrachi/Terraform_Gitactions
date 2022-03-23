@@ -1,0 +1,25 @@
+name: execute cloudify command from PR comment
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  run-command:
+    runs-on: ubuntu-latest
+    steps:
+      - id: handle_comment
+        name: handle comment on PR
+        uses: cloudify-cosmo/cloudify-comment-action@v1.2
+        with:
+          comment: "${{ github.event.comment.body }}"
+          github_token: "${{ secrets.GITHUB_TOKEN }}"
+          environment-name: "terraform-env"
+          module-source-path: tf-source/template/modules/public_vm
+          variables-file: variables.yaml
+          
+env:
+  CLOUDIFY_HOST: ${{ secrets.CLOUDIFY_HOST }}
+  CLOUDIFY_USERNAME: ${{ secrets.CLOUDIFY_USERNAME }}
+  CLOUDIFY_PASSWORD: ${{ secrets.CLOUDIFY_PASSWORD }}
+  CLOUDIFY_TENANT: ${{ secrets.CLOUDIFY_TENANT }}
+  CLOUDIFY_SSL: ${{ secrets.CLOUDIFY_SSL }}
+  CLOUDIFY_SSL_TRUST_ALL: ${{ secrets.CLOUDIFY_SSL_TRUST_ALL }}
